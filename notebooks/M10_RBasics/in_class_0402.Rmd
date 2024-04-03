@@ -1,0 +1,108 @@
+---
+title: "in_class"
+author: "Lionel Medal"
+date: "2024-04-02"
+output: pdf_document
+---
+
+## Excercise 10.1
+
+```{r}
+fib <- numeric(10)
+fib[1] <- 1
+fib[2] <- 1
+
+for (i in 3:10) {
+  fib[i] <- fib[i - 1] + fib[i - 2]
+}
+
+print(fib)
+```
+
+## Excercise 10.2
+
+```{r}
+fibonacci <- function(n) {
+  if (n <= 0) {
+    return(integer(0))  
+  }
+  
+  fib <- numeric(n)
+  fib[1] <- 1
+  if (n > 1) {
+    fib[2] <- 1
+  }
+  
+  # Calculate the Fibonacci numbers
+  for (i in 3:n) {
+    fib[i] <- fib[i - 1] + fib[i - 2]
+  }
+  
+  return(fib)
+}
+
+# Example usage:
+fib_sequence <- fibonacci(10)
+fib_sequence
+```
+
+
+## Excercise 10.3
+
+```{r}
+indicator_function <- function(x) {
+  if (x >= 0 & x <= 1) {
+    return(1)
+  } else {
+    return(0)
+  }
+}
+```
+
+## Excercise 10.4
+
+```{r}
+# Applying the function to five different values
+values <- c(-0.5, 0, 0.5, 1, 1.5) 
+results <- sapply(values, indicator_function)
+
+print(results)
+```
+
+## Excercise 10.5
+
+```{r}
+# First 10 letters in lower case
+lower_case_letters <- letters[1:10]
+
+# Last 10 letters in upper case
+upper_case_letters <- LETTERS[(length(LETTERS)-9):length(LETTERS)]
+
+# Letters from 22nd to 24th in upper case
+upper_case_slice <- LETTERS[22:24]
+
+# Output the results
+lower_case_letters
+upper_case_letters
+upper_case_slice
+```
+
+## Excercise 10.6
+
+```{r}
+for (i in 1:100) {
+  if (i %% 3 == 0 && i %% 5 != 0) {
+    print("Fizz")
+  } else if (i %% 5 == 0 && i %% 3 != 0) {
+    print("Buzz")
+  } else if (i %% 3 == 0 && i %% 5 == 0) {
+    print("FizzBuzz")
+  } else {
+    print(i)
+  }
+}
+```
+
+## Excercise 10.7
+
+```{r}
