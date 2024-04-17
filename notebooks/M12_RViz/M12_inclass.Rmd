@@ -1,0 +1,98 @@
+---
+title: "M12_inclass"
+author: "Lionel Medal"
+date: "2024-04-16"
+output: pdf_document
+---
+
+## Exercise 12
+
+```{r}
+# Load libraries
+library(ggplot2)
+library(vctrs)
+
+# Load data
+head(mpg)
+```
+
+
+## Exercise 12.2
+
+```{r}
+# Create the scatter plot
+ggplot(mpg, aes(x = cyl, y = hwy)) +
+  geom_point() +
+  labs(x = "Number of Cylinders", y = "Highway Miles per Gallon") +
+  ggtitle("Scatter Plot of Hwy vs. Cyl in the mpg dataset")
+```
+
+
+## Exercise 12.3
+
+```{r}
+# Create the scatter plot for categorical variables
+ggplot(mpg, aes(x = class, y = drv)) +
+  geom_point() +
+  labs(x = "Vehicle Class", y = "Drive Type") +
+  ggtitle("Scatter Plot of Class vs Drv (not useful)")
+```
+
+Categories are not continuous, so a scatter plot is not the best way to visualize the relationship between these two variables. A better way to visualize this relationship would be to use a bar plot or a box plot.
+
+
+## Exercise 12.4
+
+```{r}
+# Create a sequence of x values
+x <- seq(-6*pi, 6*pi, length.out = 100)
+
+# Create a dataframe or tibble with the x and sinc(x) values
+sinc_data <- tibble(
+  x = x,
+  sinc_x = if_else(x == 0, 1, sin(x) / x)
+)
+
+# Plot the sinc function 
+ggplot(sinc_data, aes(x = x, y = sinc_x)) +
+  geom_line() +
+  labs(x = "x", y = "sin(x)/x", title = "Plot of the sinc function") +
+  theme_minimal()
+```
+
+## Exercise 12.5
+
+```{r}
+# Load the cars dataset
+data(cars)
+
+# Create a scatter plot with ggplot2
+ggplot(cars, aes(x = speed, y = dist)) +
+  geom_point() +
+  labs(x = "Speed", y = "Stopping Distance", title = "Scatter Plot of Cars Data") +
+  theme_minimal()
+```
+
+
+## Exercise 12.6
+
+```{r}
+# Create a scatter plot and color points based on the condition
+ggplot(cars, aes(x = speed, y = dist, color = dist > 80)) +
+  geom_point() +
+  labs(x = "Speed", y = "Stopping Distance", title = "Scatter Plot of Cars Data with Color") +
+  scale_color_manual(values = c("FALSE" = "blue", "TRUE" = "red"),
+                     labels = c("<= 80" = "blue", "> 80" = "red"),
+                     name = "Distance") +
+  theme_minimal()
+```
+
+
+## Exercise 12.8
+
+```{r}
+ggplot(cars, aes(x = speed, y = dist)) +
+  geom_point() +                            
+  geom_smooth(method = "lm", se = FALSE) +  
+  theme_minimal()                           
+```
